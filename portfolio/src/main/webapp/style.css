@@ -1,9 +1,33 @@
+body {
+    background-color: #2e5599;
+    background-image: url("images/scales.png");
+}
+
 #content {
   margin-left: auto;
   margin-right: auto;
-  width: 650px;
+  width: 50%;
+  font-family: 'Roboto', sans-serif;
 }
 
-#greeting-container {
-  margin-top: 20px;
+#content p {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
+
+#heading {
+    margin-top: 20px;
+    background: white;
+    text-align: center;
+}
+
+#heading h1 {
+    font-size: 32px;
+    font-family: 'Bitter', serif;
+    margin-bottom: 20px;
+}
+
+#random {
+  background: white;  
+}
+

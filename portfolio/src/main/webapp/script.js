@@ -26,3 +26,11 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
+
+function addRandomFact() {
+    const facts = ['I\'m 19 years old.','My favorite color is blue.','I have a weiner dog named Tobi.',
+        'I grew up in South Florida.','My hobbies include gaming and weightlifting.'];
+
+    const randomFact = facts[Math.floor(Math.random() * facts.length)];
+    document.getElementById('fact-container').innerText = randomFact;
+}
