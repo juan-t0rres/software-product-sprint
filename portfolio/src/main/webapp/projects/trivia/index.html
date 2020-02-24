@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<head>
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Pacifico&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="content">
+        <div id="startscreen">
+            <h2 class="shadowtext">Welcome to Trivia!</h2>
+            <h4>Choose the difficulty:</h4>
+            <button type="button" onclick="chooseDifficulty(this)" class="btn btn-primary" id="easy">Easy</button>
+            <button type="button" onclick="chooseDifficulty(this)" class="btn btn-success" id="medium">Medium</button>
+            <button type="button" onclick="chooseDifficulty(this)" class="btn btn-danger" id="hard">Hard</button>
+        </div>
+        <div id="game" style="display: none;">
+            <p id="question">This is some question text</p>
+            <button type="button" onclick="answerQuestion(this)" class="btn btn-primary" id="1">ans 1</button>
+            <button type="button" onclick="answerQuestion(this)" class="btn btn-primary" id="2">ans 2</button>
+            <button type="button" onclick="answerQuestion(this)" class="btn btn-primary" id="3">ans 3</button>
+            <button type="button" onclick="answerQuestion(this)" class="btn btn-primary" id="4">ans 4</button>
+            <br></br>
+            <p><span id='question_index'></span> / <span id='num_questions'></span></p>
+        </div>
+        <div id="results" style="display: none;">
+            <p>You have answered all the questions!</p>
+            <p>Your final score was: <span id="score"></span></p>
+            <p>Maximum possible score: 100</p>
+            <button type="button" onclick="playAgain()" class="btn btn-primary">Play Again</button>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>
