@@ -1,3 +1,7 @@
+// Cell object class.
+// Cells can either be walkable or a wall.
+// Stores location and f cost.
+
 function cell(r,c,size){
   this.r = r;
   this.c = c;

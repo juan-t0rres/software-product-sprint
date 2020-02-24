@@ -51,6 +51,8 @@ function setup() {
   foundPath = false;
 }
 
+// Adds a wall if in draw mode, otherwise erases a wall.
+// If the maze has been solved, then don't do anything.
 function mousePressed(){
   if(foundPath)
     return;
@@ -65,10 +67,12 @@ function mousePressed(){
   }
 }
 
+// This lets the user "paint" the maze in.
 function mouseDragged(){
   mousePressed();
 }
 
+// Displays the maze, if the path has been found, draw the path.
 function draw() {
   for(var i = 0; i < N; i++){
     for(var j = 0; j < N; j++){
@@ -88,6 +92,8 @@ function distanceTo(a,b){
   return dist(a.x,a.y,b.x,b.y);
 }
 
+// Finds the index of the cell with the smallest F cost.
+// Could have used a minheap for faster runtime, but unnecessary for the small size of maze.
 function smallestF(open){
   var min = 0;
   for(var i = 0; i < open.length; i++){
@@ -98,10 +104,14 @@ function smallestF(open){
   return min;
 }
 
+// Makes sure the index is valid.
 function isValid(row, col){
   return row >= 0 && row < N && col >= 0 && col < N;
 }
 
+// My implementation of the A* pathfinding algorithm.
+// Considers the neighbor cells of the starting cell, and always tries to visit cells with the lowest F cost.
+// The F cost is the sum of the distance from the start to the cell, and from the cell to the end.
 function astar() {
   if(foundPath)
     return;
@@ -153,10 +163,14 @@ function astar() {
   alert('No path found! Try another maze.');
 }
 
+// Randomizes the array of walls for maze generation.
 function randomize(array) {
   array.sort(() => Math.random() - 0.5);
 }
 
+// Generates a random maze using Kruskal's MST algorithm, where every wall is an edge.
+// The only modification is that it randomly visits edges instead of going through them from smallest cost.
+// Uses disjoint sets to make sure there is no cycle.
 function generateMaze(){
   if(foundPath)
     return;
@@ -201,6 +215,7 @@ function generateMaze(){
   }
 }
 
+// Restarts the maze.
 function restart() {
   for(var i = 0; i < N; i++){
     for(var j = 0; j < N; j++){

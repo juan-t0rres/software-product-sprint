@@ -7,6 +7,7 @@ var clearButton;
 var solveButton;
 var inp;
 
+// Sets up the grid so the user can input a sudoku board.
 function setup() {
   createCanvas(size, size+30);
 
@@ -31,6 +32,7 @@ function setup() {
   }
 }
 
+// Updates the board. If the board has been solved displays a correct solution.
 function draw() {
   textSize(20);
   background(255);
@@ -48,10 +50,10 @@ function draw() {
       }
     }
   }
-  
   drawLayout();
 }
 
+// Checks if you can place num at index (row,col).
 function canPlace(num, row, col){
   // check row
   for(var i = 0; i < N; i++){
@@ -81,6 +83,8 @@ function canPlace(num, row, col){
   return true;
 }
 
+// The helper function for solve.
+// This function tries to place numbers 1 to N at each spot, backtracking at incorrect states.
 function helper(r, c){
   if(r == N)
     return true;
@@ -108,6 +112,7 @@ function helper(r, c){
   return solved;
 }
 
+// Solves the board, alerts the user if the board cannot be solved.
 function solve(){
   solved = true;
   grid = new Array(N);
@@ -148,6 +153,7 @@ function solve(){
   }
 }
 
+// Clears the board.
 function clearScreen(){
   for(var i = 0; i < N; i++){
     for(var j = 0; j < N; j++){
@@ -158,6 +164,7 @@ function clearScreen(){
   }
 }
 
+// Draws the lines to make the board look like a sudoku board.
 function drawLayout(){
   stroke(50);
   strokeWeight(3);
