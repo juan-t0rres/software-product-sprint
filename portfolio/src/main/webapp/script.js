@@ -14,7 +14,6 @@
 
 async function getData() {
     const response = await fetch('/data');
-    await console.log(response);
     const data = await response.text();
     document.getElementById('data-container').innerHTML = data;
 }
