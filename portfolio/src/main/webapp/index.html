@@ -14,26 +14,78 @@
   </head>
   <body>
     <div id="content">
-
-        <div id="heading" class="jumbotron border">
+        <div id="heading" class="jumbotron border rounded">
             <h1>Welcome to my portfolio!</h1>
             <img src="/images/me.png" height="256" width="256"/>
+            <br><br>
             <p class="lead">My name is Juan Torres, I'm a second year student at the University of Central Florida.</p>
             <hr class="my-4">
-            <p>This text is just a placeholder until I add an about me section to this website.</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+            <a class="btn btn-primary btn-lg" href="#about-me" role="button">Click here to learn more about me!</a>
         </div>
 
-        <div id="random" class="container border rounded">
-            <p>Click here to get a random message:</p>
-            <button onclick="addRandomGreeting()" class="btn btn-primary">Hello</button>
-            <p id="greeting-container"></p>
-
-            <p>Click here to get a random fact about me:</p>
-            <button onclick="addRandomFact()" class="btn btn-primary">Click Me!</button>
-            <p id="fact-container"></p>
+        <div id="about-me" class="container border rounded">
+            <h1>About Me</h1>
+            <p>
+            I was originally born in Venezuela but moved to the United States when I was 2 years old. I was raised in South Florida but now I live in Central Florida for school.
+            Some of my hobbies include weightlifting, playing videogames, and programming.
+            </p>
+            <p>
+            I'm currently a sophomore at University of Central Florida majoring in Computer Science. I'm an aspiring software engineer with a passion for learning.
+            I have been coding for as long as I can remember, it's something that has interested me since I was much younger. I am currently on the programming team
+            at my university which requires me to practice competitive programming weekly. Here are some of the languages/tools that I am most familiar with:
+            </p>
+            <div class="row text-center">
+                <div class="col-sm">
+                    <img src="images/java.png" width="64px" height="64px"/>
+                </div>
+                <div class="col-sm">
+                    <img src="images/python.png" width="64px" height="64px"/>
+                </div>
+                <div class="col-sm">
+                    <img src="images/c.png" width="64px" height="64px"/>
+                </div>
+                <div class="col-sm">
+                    <img src="images/html.png" width="64px" height="64px"/>
+                </div>
+                <div class="col-sm">
+                    <img src="images/css.png" width="48px" height="64px"/>
+                </div>
+                <div class="col-sm">
+                    <img src="images/bootstrap.png" width="64px" height="64px"/>
+                </div>
+            </div>
         </div>
-    
+
+        <div id="projects" class="container border rounded">
+            <h1>Projects</h1>
+            <p><center>All source code can be found on my <a href="https://github.com/juan-t0rres/">github</a>.</center></p>
+            <div class="card-deck">
+                <div class="card">
+                        <img class="card-img-top mx-auto" src="images/trivia.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Trivia</h5>
+                            <p class="card-text">Trivia game created entirely using JavaScript and the Open Trivia Database.</p>
+                            <a href="projects/trivia/index.html" class="btn btn-secondary">Try it</a>
+                        </div>
+                    </div>
+                <div class="card">
+                        <img class="card-img-top mx-auto" src="images/maze.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Maze Solver</h5>
+                            <p class="card-text">Solves any maze with A* path finding algorithm.</p>
+                            <a href="projects/mazesolver/index.html" class="btn btn-secondary">Try it</a>
+                        </div>
+                    </div>
+                <div class="card" style="width: 16rem;">
+                        <img class="card-img-top mx-auto" src="images/sudoku.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Sudoku Solver</h5>
+                            <p class="card-text">Program that solves any solvable sudoku board using backtracking.</p>
+                            <a href="projects/sudoku/index.html" class="btn btn-secondary">Try it</a>
+                        </div>
+                    </div>
+            </div>
+        </div>
     </div>
   </body>
 </html>
