@@ -15,8 +15,8 @@
 async function getData() {
     const response = await fetch('/data');
     const comments = await response.json();
-    let html = "<br>";
-    for(let i = 0; i < comments.length; i++)
-        html += "<br>" + comments[i] + "<br>";
+    let html = "";
+    for(const comment of comments)
+        html += "<p>" + comment + "<p>";
     document.getElementById('data-container').innerHTML = html;
 }
