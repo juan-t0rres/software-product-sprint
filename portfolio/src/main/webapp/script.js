@@ -17,10 +17,10 @@ async function getData() {
     const comments = await response.json();
     let html = "";
     for(const comment of comments) {
-        html += "<div id=\"comment\">\n";
-        html += "<p>" + comment.message + "</p>\n";
-        html += "<p><small>" + comment.firstName + " " + comment.lastName + "</small></p>\n";
-        html += "</div>\n";
+        html += "<div class=\"comment\">";
+        html += `<p>${comment.message}</p>`;
+        html += `<p><small>${comment.firstName} ${comment.lastName}</small></p>`;
+        html += "</div>";
     }
     document.getElementById('data-container').innerHTML = html;
 }
