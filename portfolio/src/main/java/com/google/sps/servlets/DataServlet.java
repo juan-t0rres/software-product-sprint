@@ -26,23 +26,42 @@ import java.util.ArrayList;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
+  private ArrayList<Comment> comments = new ArrayList<>();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json;");
-    
-    ArrayList<String> messages = new ArrayList<>();
-    messages.add("This is some sample text.");
-    messages.add("This is a comment.");
-    messages.add("Test test test test test.");
-
-    String json = convertToJson(messages);
-
+    String json = getCommentsJson();
     response.getWriter().println(json);
   }
 
-  public String convertToJson(ArrayList<String> arr) {
-    return (new Gson()).toJson(arr);
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    Comment newComment = getComment(request);
+    comments.add(newComment);
+    response.sendRedirect("/index.html");
   }
+
+  public Comment getComment(HttpServletRequest request) {
+    String firstName = request.getParameter("inputFirstName");
+    String lastName = request.getParameter("inputLastName");
+    String message = request.getParameter("inputComment");
+    return new Comment(firstName,lastName,message);
+  }
+  
+  public String getCommentsJson() {
+      return (new Gson()).toJson(comments);
+  }
+}
+
+class Comment {
+
+    public String firstName, lastName, message;
+
+    public Comment(String firstName, String lastName, String message) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.message = message;
+    }
 
 }

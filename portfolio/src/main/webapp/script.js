@@ -16,7 +16,11 @@ async function getData() {
     const response = await fetch('/data');
     const comments = await response.json();
     let html = "";
-    for(const comment of comments)
-        html += "<p>" + comment + "<p>";
+    for(const comment of comments) {
+        html += "<div id=\"comment\">\n";
+        html += "<p>" + comment.message + "</p>\n";
+        html += "<p><small>" + comment.firstName + " " + comment.lastName + "</small></p>\n";
+        html += "</div>\n";
+    }
     document.getElementById('data-container').innerHTML = html;
 }

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="getData();">
     <div id="content">
         <div id="heading" class="jumbotron border rounded">
             <h1>Welcome to my portfolio!</h1>
@@ -89,8 +89,27 @@
 
         <div id="comments" class="container border rounded">
             <h1>Comments</h1>
-            <button type="button" class="btn btn-primary" onclick="getData();">Click here to fetch a message from the server.</button>
-            <span id="data-container"></span>
+
+            <div id="data-container">
+            </div>
+
+            <form action="/data" method="POST">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputFirstName">First Name</label>
+                        <input type="text" class="form-control" name="inputFirstName">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputLastName">Last Name</label>
+                        <input type="text" class="form-control" name="inputLastName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputComment">Comment</label>
+                    <textarea class="form-control" name="inputComment" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Comment</button>
+            </form>
         </div>
     </div>
   </body>
