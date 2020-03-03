@@ -14,7 +14,8 @@
 
 async function getData() {
     const response = await fetch('/data');
-    const comments = await response.json();
+    const json = await response.json();
+    const comments = json.comments;
     let html = "";
     for(const comment of comments) {
         html += "<div class=\"comment\">";
@@ -22,5 +23,6 @@ async function getData() {
         html += `<p><small>${comment.firstName} ${comment.lastName}</small></p>`;
         html += "</div>";
     }
+    document.getElementById('sentiment-container').innerText = json.avgScore;
     document.getElementById('data-container').innerHTML = html;
 }
