@@ -23,6 +23,23 @@ async function getData() {
         html += `<p><small>${comment.firstName} ${comment.lastName}</small></p>`;
         html += "</div>";
     }
-    document.getElementById('sentiment-container').innerText = json.avgScore;
+    const w = ((json.avgScore+1)/2)*100;
+    let text;
+    let color;
+    if(w <= 44) {
+        text = "Negative";
+        color = "bg-danger";
+    }
+    else if (w <= 55) {
+        text = "Neutral";
+        color = "bg-info";
+    }
+    else {
+        text = "Positive";
+        color = "bg-success";
+    }
+    document.getElementById('sentiment').innerHTML = 
+        `<p>Average Comment Sentiment: <em>${text}</em></p>` +
+        `<div class=progress><div class="progress-bar progress-bar-striped progress-bar-animated ${color}" role="progressbar" style="width: ${w}%"></div></div>`;
     document.getElementById('data-container').innerHTML = html;
 }
