@@ -34,7 +34,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.ArrayList;
 
-/** Servlet that returns comments **/
+/** Servlet that returns comments */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 

@@ -18,10 +18,10 @@ async function getData() {
     const comments = json.comments;
     let html = "";
     for(const comment of comments) {
-        html += "<div class=\"comment\">";
+        html += `<div class="comment">`;
         html += `<p>${comment.message}</p>`;
         html += `<p><small>${comment.firstName} ${comment.lastName}</small></p>`;
-        html += "</div>";
+        html += `</div>`;
     }
     const w = ((json.avgScore+1)/2)*100;
     let text;
