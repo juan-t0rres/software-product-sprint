@@ -21,6 +21,10 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 
+import com.google.cloud.language.v1.Document;
+import com.google.cloud.language.v1.LanguageServiceClient;
+import com.google.cloud.language.v1.Sentiment;
+
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,7 +34,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.ArrayList;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+/** Servlet that returns comments */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
@@ -41,18 +45,28 @@ public class DataServlet extends HttpServlet {
     PreparedQuery results = datastore.prepare(query);
 
     List<Comment> comments = new ArrayList<>();
+    LanguageServiceClient languageService = LanguageServiceClient.create();
+    float sentimentSum = 0;
+
     for (Entity entity : results.asIterable()) {
       String firstName = (String) entity.getProperty("firstName");
       String lastName = (String) entity.getProperty("lastName");
       String message = (String) entity.getProperty("message");
       long timestamp = (long) entity.getProperty("timestamp");
-
       Comment comment = new Comment(firstName,lastName,message,timestamp);
+
+      Document doc = Document.newBuilder().setContent(message).setType(Document.Type.PLAIN_TEXT).build();
+      Sentiment sentiment = languageService.analyzeSentiment(doc).getDocumentSentiment();
+      sentimentSum += sentiment.getScore();
+
       comments.add(comment);
     }
+    languageService.close();
 
+    float avgSentiment = comments.size() == 0 ? 0 : sentimentSum / comments.size();
+    JsonResponse jr = new JsonResponse(comments,avgSentiment);
     response.setContentType("application/json;");
-    response.getWriter().println(getCommentsJson(comments));
+    response.getWriter().println(getJson(jr));
   }
 
   @Override
@@ -72,11 +86,12 @@ public class DataServlet extends HttpServlet {
     commentEntity.setProperty("lastName",lastName);
     commentEntity.setProperty("message",message);
     commentEntity.setProperty("timestamp",System.currentTimeMillis());
+    
     return commentEntity;
   }
   
-  public String getCommentsJson(List<Comment> comments) {
-    return (new Gson()).toJson(comments);
+  public String getJson(JsonResponse jr) {
+    return (new Gson()).toJson(jr);
   }
 }
 
@@ -88,6 +103,15 @@ class Comment {
     this.firstName = firstName;
     this.lastName = lastName;
     this.message = message;
-    this.timestamp = timestamp; 
+    this.timestamp = timestamp;
   }
+}
+
+class JsonResponse {
+    public List<Comment> comments;
+    public float avgScore;
+    public JsonResponse(List<Comment> comments, float avgScore) {
+        this.comments = comments;
+        this.avgScore = avgScore;
+    }
 }
